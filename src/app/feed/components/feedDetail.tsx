@@ -1,4 +1,4 @@
-import { Box, Button } from '@mui/material';
+import { Box, Button, CircularProgress, Typography } from '@mui/material';
 import { FC, useState } from 'react';
 import { FeedItem } from '../page';
 import axios from 'axios';
@@ -40,12 +40,16 @@ export const FeedDetail: FC<Props> = ({ feed }) => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  if (!data) return;
+  if (!data) return <CircularProgress />;
 
   return (
     <Box sx={{ mx: 2 }}>
-      <Button onClick={handleOpen}>Add To Feed</Button>
-      <AddModal open={open} handleClose={handleClose} selectedFeed={feed} />
+      <Box sx={{ display: 'flex', alignItems: 'center' }}>
+        <Typography variant="h6">{feed.title}</Typography>
+        <Button onClick={handleOpen} sx={{ ml: 2 }}>
+          Add To Feed
+        </Button>
+      </Box>
       <Box
         sx={{
           overflow: 'scroll',
@@ -55,6 +59,7 @@ export const FeedDetail: FC<Props> = ({ feed }) => {
       >
         <EpisodeList episodeList={data.data} />
       </Box>
+      <AddModal open={open} handleClose={handleClose} selectedFeed={feed} />
     </Box>
   );
 };

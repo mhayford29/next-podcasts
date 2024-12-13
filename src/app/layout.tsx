@@ -1,9 +1,7 @@
-import { AppBar, Box, Button, Toolbar } from '@mui/material';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { ReactQueryProvider } from './providers';
-import { signOut } from 'next-auth/react';
-import Link from 'next/link';
+import NavBarLayout from './layouts/navBarLayout';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -19,8 +17,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <ReactQueryProvider>{children}</ReactQueryProvider>
+      <body className={inter.className} style={{ padding: 0, margin: 0 }}>
+        <ReactQueryProvider>
+          <NavBarLayout>{children}</NavBarLayout>
+        </ReactQueryProvider>
       </body>
     </html>
   );

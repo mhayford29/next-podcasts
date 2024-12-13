@@ -1,6 +1,6 @@
 'use client';
 
-import { Box } from '@mui/material';
+import { Box, CircularProgress } from '@mui/material';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { FeedList } from './components/feedList';
@@ -43,10 +43,10 @@ const Page = () => {
     setSelectedFeed(data.data[0]);
   }, [data]);
 
-  if (!data || !selectedFeed) return null;
+  if (!data || !selectedFeed) return <CircularProgress />;
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'flex', mt: 2 }}>
       <FeedList feedList={data.data} handleFeedSelect={handleFeedSelect} />
       <FeedDetail feed={selectedFeed} />
     </Box>
