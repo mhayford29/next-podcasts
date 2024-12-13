@@ -38,17 +38,13 @@ interface Result {
   wrapperType: string;
 }
 
-interface Data {
-  data: SearchData;
-}
-
 export interface SearchData {
   resultCount: number;
   results: Result[];
 }
 
 interface QResponse {
-  data: Data;
+  data: SearchData;
 }
 
 const search = (queryString: string | undefined): any => {
@@ -69,7 +65,7 @@ export const Search: FC = () => {
 
   const debouncedQueryString = useDebounce(queryString, 500);
 
-  const { data, isLoading } = useQuery<QResponse>({
+  const { data } = useQuery<QResponse>({
     queryKey: ['podcasts', debouncedQueryString],
     queryFn: () => search(debouncedQueryString),
     enabled: Boolean(debouncedQueryString),
@@ -87,7 +83,7 @@ export const Search: FC = () => {
           />
         </Box>
       </form>
-      {data ? <SearchResults data={data.data.data} /> : null}
+      {data ? <SearchResults data={data.data} /> : null}
     </Box>
   );
 };

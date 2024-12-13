@@ -6,17 +6,14 @@ interface ResponseData {
   exception?: any;
 }
 
-export const GET = async (
-  req: NextRequest,
-  res: NextResponse<ResponseData>,
-) => {
+export const GET = async (req: NextRequest) => {
   const params = req.nextUrl.searchParams;
   try {
     const { data } = await axios('https://itunes.apple.com/search', {
       params,
     });
 
-    return NextResponse.json({ data });
+    return NextResponse.json(data);
   } catch (exception) {
     throw exception;
   }

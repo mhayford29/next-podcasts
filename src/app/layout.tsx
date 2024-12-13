@@ -1,7 +1,9 @@
-import { Box } from '@mui/material';
+import { AppBar, Box, Button, Toolbar } from '@mui/material';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { ReactQueryProvider } from './providers';
+import { signOut } from 'next-auth/react';
+import Link from 'next/link';
 
 const inter = Inter({ subsets: ['latin'] });
 

@@ -1,4 +1,6 @@
 import { User, UserFeed } from '@/entities';
+import { Channel } from '@/entities/Channel';
+import { ChannelFeed } from '@/entities/ChannelFeed';
 import { DataSource, DataSourceOptions } from 'typeorm';
 
 export const dataSourceOptions: DataSourceOptions = {
@@ -8,7 +10,7 @@ export const dataSourceOptions: DataSourceOptions = {
   database: process.env.DB_NAME,
   synchronize: true, // Syncs database schema, turn off in production
   logging: false,
-  entities: [User, UserFeed],
+  entities: [User, UserFeed, Channel, ChannelFeed],
 };
 
 export const AppDataSource = new DataSource(dataSourceOptions);
