@@ -11,7 +11,7 @@ export const EpisodeList: FC<Props> = ({ episodeList }) => {
   return (
     <List>
       {episodeList.map((episode) => {
-        return <EpisodeItem episode={episode} />;
+        return <EpisodeItem episode={episode} key={episode.title} />;
       })}
     </List>
   );
